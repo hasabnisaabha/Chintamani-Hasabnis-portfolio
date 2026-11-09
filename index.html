@@ -1,0 +1,895 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chintamani Hasabnis — Visual Artist & Tactile Art Pioneer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cormorant Garamond (High-end Editorial Serif) & Inter (Clean Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@200;300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        subheading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        galleryBg: '#FBFBFA',
+                        gallerySurface: '#F4F1EA',
+                        galleryBorder: '#E5E2DA',
+                        galleryInk: '#1C1A17',
+                        galleryMuted: '#706C65',
+                        galleryAccent: '#9E7B56', // Warm understated bronze gold
+                        galleryAccentLight: '#EFEBE4'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FBFBFA;
+            color: #1C1A17;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle tactile texture overlay simulation */
+        .gallery-canvas-texture {
+            background-image: radial-gradient(#E8E4DA 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+        }
+
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FBFBFA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5D1C8;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9E7B56;
+        }
+
+        /* Delicate image zoom on hover */
+        .img-hover-zoom {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-container:hover .img-hover-zoom {
+            transform: scale(1.04);
+        }
+
+        /* Fade-in animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-galleryBg text-galleryInk flex flex-col min-h-screen selection:bg-galleryAccentLight selection:text-galleryInk">
+
+    <!-- TOP ANNOUNCEMENT BAR / GALLERY ACCESSIBILITY NOTE -->
+    <div class="bg-gallerySurface border-b border-galleryBorder py-2.5 px-4 text-xs tracking-widest uppercase font-subheading text-galleryMuted">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-galleryAccent"></span>
+                <span>Pioneering Tactile & Braille Fine Art for Visually Impaired Audiences</span>
+            </div>
+            <div class="flex items-center space-x-6 text-[11px] font-medium text-galleryMuted">
+                <span>PUNE STUDIO, INDIA</span>
+                <span class="hidden md:inline">•</span>
+                <span class="hidden md:inline">RAVI PARANJAPE PURASKAR LAUREATE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 bg-galleryBg/90 backdrop-blur-md border-b border-galleryBorder transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Artist Name & Brand -->
+                <a href="#" class="group flex flex-col">
+                    <span class="font-serif text-2xl sm:text-3xl tracking-wide font-normal group-hover:text-galleryAccent transition-colors">
+                        Chintamani Hasabnis
+                    </span>
+                    <span class="font-subheading text-[10px] tracking-[0.25em] text-galleryMuted uppercase">
+                        Visual Artist & Tactile Sculptor
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 font-subheading text-xs tracking-[0.2em] uppercase font-medium">
+                    <a href="#gallery" class="text-galleryInk hover:text-galleryAccent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-galleryAccent hover:after:w-full after:transition-all">Selected Works</a>
+                    <a href="#tactile" class="text-galleryInk hover:text-galleryAccent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-galleryAccent hover:after:w-full after:transition-all">Tactile Experience</a>
+                    <a href="#about" class="text-galleryInk hover:text-galleryAccent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-galleryAccent hover:after:w-full after:transition-all">Biography</a>
+                    <a href="#musings" class="text-galleryInk hover:text-galleryAccent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-galleryAccent hover:after:w-full after:transition-all">Musings</a>
+                    <a href="#contact" class="border border-galleryInk px-5 py-2 hover:bg-galleryInk hover:text-galleryBg transition-all duration-300">Inquire</a>
+                </nav>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-galleryInk focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-galleryBorder bg-gallerySurface px-6 py-6 font-subheading text-xs tracking-widest uppercase flex flex-col gap-4">
+            <a href="#gallery" onclick="toggleMobileMenu()" class="py-2 border-b border-galleryBorder/50">Selected Works</a>
+            <a href="#tactile" onclick="toggleMobileMenu()" class="py-2 border-b border-galleryBorder/50">Tactile Art Initiative</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="py-2 border-b border-galleryBorder/50">Biography & Resume</a>
+            <a href="#musings" onclick="toggleMobileMenu()" class="py-2 border-b border-galleryBorder/50">Facebook Musings</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="py-2 text-galleryAccent font-semibold">Contact & Inquiries</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-galleryBorder">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Hero Left: Curator Intro Text -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-block font-subheading text-[11px] tracking-[0.3em] uppercase text-galleryAccent border-b border-galleryAccent pb-1">
+                        Gallery Portfolio Exhibition
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.15] text-galleryInk">
+                        Art beyond sight: where form, canvas, and <em class="italic font-normal text-galleryAccent">tactile sense</em> converge.
+                    </h1>
+
+                    <p class="text-galleryMuted font-sans text-base sm:text-lg leading-relaxed max-w-2xl font-light">
+                        For over four decades, Pune-based artist <strong>Chintamani Hasabnis</strong> has crafted portraiture, fine art compositions, and pioneering 3D tactile relief paintings designed for visual and touch appreciation by sighted and visually impaired audiences alike.
+                    </p>
+
+                    <!-- Key Pillars -->
+                    <div class="grid grid-cols-3 gap-6 pt-4 border-t border-galleryBorder max-w-xl font-subheading">
+                        <div>
+                            <span class="block font-serif text-3xl font-light text-galleryInk">40+</span>
+                            <span class="text-[10px] tracking-widest uppercase text-galleryMuted font-medium">Years Active</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-3xl font-light text-galleryInk">100+</span>
+                            <span class="text-[10px] tracking-widest uppercase text-galleryMuted font-medium">Tactile Works</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-3xl font-light text-galleryInk">Abhinav</span>
+                            <span class="text-[10px] tracking-widest uppercase text-galleryMuted font-medium">Alumni Base</span>
+                        </div>
+                    </div>
+
+                    <!-- Call To Action -->
+                    <div class="flex flex-wrap items-center gap-6 pt-4 font-subheading text-xs tracking-widest uppercase font-medium">
+                        <a href="#gallery" class="bg-galleryInk text-galleryBg px-8 py-4 hover:bg-galleryAccent transition-colors duration-300 flex items-center gap-3">
+                            <span>Explore Gallery</span>
+                            <i class="fa-solid fa-arrow-right-long text-xs"></i>
+                        </a>
+                        <a href="#tactile" class="text-galleryInk hover:text-galleryAccent transition-colors py-2 flex items-center gap-2 group">
+                            <span>The Tactile Philosophy</span>
+                            <i class="fa-solid fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Featured Exhibition Piece -->
+                <div class="lg:col-span-5">
+                    <div class="bg-gallerySurface p-6 border border-galleryBorder shadow-sm relative">
+                        <div class="img-container relative aspect-[4/5] bg-white border border-galleryBorder overflow-hidden cursor-pointer mb-5" onclick="openLightbox('hero-art')">
+                            <!-- Refined Visual Art Graphic -->
+                            <svg class="w-full h-full img-hover-zoom" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="500" fill="#F4F0E8"/>
+                                <circle cx="200" cy="200" r="120" fill="#E2D4C3" opacity="0.6"/>
+                                <path d="M120 340 C160 220, 240 220, 280 340 Z" fill="#9E7B56" opacity="0.85"/>
+                                <circle cx="200" cy="180" r="45" fill="#4A453F"/>
+                                <path d="M80 420 Q200 370 320 420" stroke="#1C1A17" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+                                <!-- Delicate Braille Dots Overlay -->
+                                <g fill="#9E7B56">
+                                    <circle cx="50" cy="50" r="2.5"/><circle cx="62" cy="50" r="2.5"/><circle cx="50" cy="62" r="2.5"/>
+                                    <circle cx="330" cy="50" r="2.5"/><circle cx="342" cy="62" r="2.5"/><circle cx="330" cy="62" r="2.5"/>
+                                    <circle cx="50" cy="440" r="2.5"/><circle cx="62" cy="440" r="2.5"/>
+                                </g>
+                            </svg>
+                            <div class="absolute inset-0 bg-galleryInk/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-white/95 text-galleryInk font-subheading text-[11px] tracking-widest uppercase px-4 py-2 border border-galleryBorder shadow-sm">
+                                    Enlarge Canvas
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-baseline font-serif">
+                            <div>
+                                <h3 class="text-xl text-galleryInk font-normal">Raga in Tactile Relief</h3>
+                                <p class="font-sans text-xs text-galleryMuted mt-0.5">Embossed Acrylic, Braille & Mixed Relief • 2022</p>
+                            </div>
+                            <span class="font-subheading text-[10px] tracking-wider text-galleryAccent uppercase font-medium">Featured</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ARTWORK GALLERY SECTION -->
+        <section id="gallery" class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 border-b border-galleryBorder">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="font-subheading text-[11px] tracking-[0.3em] uppercase text-galleryAccent block mb-2">Curated Archive</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-light text-galleryInk">Selected Artworks</h2>
+                </div>
+                
+                <!-- Refined Category Filter Links -->
+                <div class="flex flex-wrap gap-6 font-subheading text-xs tracking-widest uppercase border-b border-galleryBorder pb-2">
+                    <button onclick="filterGallery('all', this)" class="filter-btn text-galleryInk font-semibold border-b-2 border-galleryInk pb-2 transition-all">All Works</button>
+                    <button onclick="filterGallery('tactile', this)" class="filter-btn text-galleryMuted hover:text-galleryInk pb-2 transition-all">Tactile & Braille</button>
+                    <button onclick="filterGallery('portraits', this)" class="filter-btn text-galleryMuted hover:text-galleryInk pb-2 transition-all">Fine Portraits</button>
+                    <button onclick="filterGallery('sketches', this)" class="filter-btn text-galleryMuted hover:text-galleryInk pb-2 transition-all">Studio Archives</button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Artwork Card 1 -->
+                <div class="gallery-card tactile group cursor-pointer" onclick="openLightbox('art-1')">
+                    <div class="img-container aspect-square bg-gallerySurface border border-galleryBorder overflow-hidden relative mb-4">
+                        <svg class="w-full h-full img-hover-zoom" viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#F2EFE9"/>
+                            <circle cx="150" cy="140" r="70" fill="#D3C7B6"/>
+                            <path d="M70 230 C 110 160, 190 160, 230 230 Z" fill="#9E7B56" opacity="0.7"/>
+                        </svg>
+                        <div class="absolute top-3 left-3 bg-white/90 border border-galleryBorder text-galleryMuted font-subheading text-[9px] tracking-widest uppercase px-2.5 py-1">
+                            Tactile Relief
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">2023 • Textured Relief & Braille</div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors">The Whispering Relief</h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">High-relief textures depicting rural Maharashtrian motifs integrated with Braille storytelling.</p>
+                    </div>
+                </div>
+
+                <!-- Artwork Card 2 -->
+                <div class="gallery-card portraits group cursor-pointer" onclick="openLightbox('art-2')">
+                    <div class="img-container aspect-square bg-gallerySurface border border-galleryBorder overflow-hidden relative mb-4">
+                        <svg class="w-full h-full img-hover-zoom" viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#EBE7DF"/>
+                            <ellipse cx="150" cy="130" rx="45" ry="55" fill="#BFAF9B"/>
+                            <path d="M80 260 L220 260 L180 180 L120 180 Z" fill="#3D3833"/>
+                        </svg>
+                        <div class="absolute top-3 left-3 bg-white/90 border border-galleryBorder text-galleryMuted font-subheading text-[9px] tracking-widest uppercase px-2.5 py-1">
+                            Portrait
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">2021 • Oil on Canvas</div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors">Scholar in Thought</h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">Classic realistic portraiture demonstrating delicate control over light and human depth.</p>
+                    </div>
+                </div>
+
+                <!-- Artwork Card 3 -->
+                <div class="gallery-card tactile group cursor-pointer" onclick="openLightbox('art-3')">
+                    <div class="img-container aspect-square bg-gallerySurface border border-galleryBorder overflow-hidden relative mb-4">
+                        <svg class="w-full h-full img-hover-zoom" viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#F5F2EC"/>
+                            <polygon points="150,50 230,230 70,230" fill="#C4B49F" stroke="#9E7B56" stroke-width="1"/>
+                            <circle cx="150" cy="150" r="30" fill="#9E7B56"/>
+                        </svg>
+                        <div class="absolute top-3 left-3 bg-white/90 border border-galleryBorder text-galleryMuted font-subheading text-[9px] tracking-widest uppercase px-2.5 py-1">
+                            Tactile Relief
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">2024 • Embossed Acrylic & Wood</div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors">Geometry of Touch #04</h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">Bold geometric structures crafted with varying grain elevation for touch-guided exploration.</p>
+                    </div>
+                </div>
+
+                <!-- Artwork Card 4 -->
+                <div class="gallery-card sketches group cursor-pointer" onclick="openLightbox('art-4')">
+                    <div class="img-container aspect-square bg-gallerySurface border border-galleryBorder overflow-hidden relative mb-4">
+                        <svg class="w-full h-full img-hover-zoom" viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#F8F6F0"/>
+                            <path d="M50 160 Q100 40 150 160 T250 160" stroke="#706C65" stroke-width="1.5" fill="none"/>
+                            <path d="M60 210 C110 130 190 270 240 170" stroke="#9E7B56" stroke-width="1" stroke-dasharray="4,4" fill="none"/>
+                        </svg>
+                        <div class="absolute top-3 left-3 bg-white/90 border border-galleryBorder text-galleryMuted font-subheading text-[9px] tracking-widest uppercase px-2.5 py-1">
+                            Studio Sketch
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">2023 • Charcoal & Pastel</div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors">Form & Motion Study</h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">Preparatory dynamic stroke work capturing human posture and quick line weight variations.</p>
+                    </div>
+                </div>
+
+                <!-- Artwork Card 5 -->
+                <div class="gallery-card portraits group cursor-pointer" onclick="openLightbox('art-5')">
+                    <div class="img-container aspect-square bg-gallerySurface border border-galleryBorder overflow-hidden relative mb-4">
+                        <svg class="w-full h-full img-hover-zoom" viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#EAE5DC"/>
+                            <circle cx="150" cy="125" r="60" fill="#C5B8A5"/>
+                            <rect x="90" y="195" width="120" height="85" fill="#544E47"/>
+                        </svg>
+                        <div class="absolute top-3 left-3 bg-white/90 border border-galleryBorder text-galleryMuted font-subheading text-[9px] tracking-widest uppercase px-2.5 py-1">
+                            Portrait
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">2019 • Oil on Canvas</div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors">The Old Musician</h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">Award-nominated portrait capturing the soulful essence and wrinkles of an Indian classical maestro.</p>
+                    </div>
+                </div>
+
+                <!-- Artwork Card 6 -->
+                <div class="gallery-card tactile group cursor-pointer" onclick="openLightbox('art-6')">
+                    <div class="img-container aspect-square bg-gallerySurface border border-galleryBorder overflow-hidden relative mb-4">
+                        <svg class="w-full h-full img-hover-zoom" viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#F1ECE4"/>
+                            <rect x="70" y="70" width="160" height="160" fill="#D3C5B3" stroke="#9E7B56" stroke-width="1"/>
+                            <circle cx="150" cy="150" r="45" fill="#9E7B56"/>
+                        </svg>
+                        <div class="absolute top-3 left-3 bg-white/90 border border-galleryBorder text-galleryMuted font-subheading text-[9px] tracking-widest uppercase px-2.5 py-1">
+                            Tactile Relief
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">2020 • Multi-layered Canvas Relief</div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors">Nature in Braille</h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">Tactile depiction of floral ecosystems paired with descriptive Braille captions across the canvas base.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TACTILE ART INITIATIVE SPOTLIGHT -->
+        <section id="tactile" class="bg-gallerySurface border-b border-galleryBorder py-24">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-8">
+                        <div class="inline-block font-subheading text-[11px] tracking-[0.3em] uppercase text-galleryAccent border-b border-galleryAccent pb-1">
+                            Social Vision & Inclusivity
+                        </div>
+
+                        <h2 class="font-serif text-3xl sm:text-5xl font-light text-galleryInk leading-tight">
+                            "Do not touch" is the rule of museums. We turned touch into the <em class="italic text-galleryAccent">primary gallery key.</em>
+                        </h2>
+
+                        <p class="text-galleryMuted font-sans text-base leading-relaxed font-light">
+                            Traditional art spaces rely solely on visual sight. Chintamani Hasabnis pioneered tactile relief canvases incorporating 3D textures, varied natural grains, and Braille narrative scripts—opening art exhibitions to visually impaired art enthusiasts for the very first time.
+                        </p>
+
+                        <!-- Key Highlights -->
+                        <div class="space-y-4 font-sans text-xs border-t border-b border-galleryBorder py-6">
+                            <div class="flex items-start gap-4">
+                                <span class="font-serif text-xl italic text-galleryAccent">01</span>
+                                <div>
+                                    <h4 class="font-subheading font-medium text-galleryInk uppercase text-[11px] tracking-widest">Multi-layered Depth</h4>
+                                    <p class="text-galleryMuted font-light mt-0.5">Varying height elevations allow fingertips to trace figure contours effortlessly.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="font-serif text-xl italic text-galleryAccent">02</span>
+                                <div>
+                                    <h4 class="font-subheading font-medium text-galleryInk uppercase text-[11px] tracking-widest">Braille Narrative Integration</h4>
+                                    <p class="text-galleryMuted font-light mt-0.5">Artistic reflections and color palette notes embossed in Marathi & English Braille directly on canvas margins.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audio Description Toggle Button -->
+                        <div>
+                            <button onclick="playAudioGuideDemo()" class="border border-galleryInk bg-galleryBg text-galleryInk hover:bg-galleryInk hover:text-galleryBg font-subheading text-xs tracking-widest uppercase px-6 py-3.5 transition-all duration-300 flex items-center gap-3">
+                                <i class="fa-solid fa-volume-low text-sm" id="audioIcon"></i>
+                                <span id="audioText">Listen to Audio Description Demo</span>
+                            </button>
+                            <p id="audioNotice" class="text-xs font-sans text-galleryMuted italic mt-3 hidden">
+                                "Now audio-describing canvas elevation: Notice the raised arc on the upper left representing warmth and sun motion..."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="bg-galleryBg p-8 border border-galleryBorder shadow-sm space-y-4">
+                            <div class="aspect-4/3 bg-gallerySurface border border-galleryBorder overflow-hidden relative">
+                                <svg class="w-full h-full" viewBox="0 0 400 300">
+                                    <rect width="400" height="300" fill="#F7F4EE"/>
+                                    <!-- Diagram Representation -->
+                                    <rect x="50" y="50" width="300" height="200" fill="#FAF9F5" stroke="#E5E2DA" stroke-width="1"/>
+                                    <path d="M80 200 C 120 100, 240 100, 300 200 Z" fill="#9E7B56" opacity="0.3"/>
+                                    <path d="M100 200 C 140 130, 220 130, 260 200 Z" fill="#9E7B56" opacity="0.6"/>
+                                    <circle cx="180" cy="130" r="30" fill="#9E7B56"/>
+                                    <!-- Braille Dots -->
+                                    <g fill="#1C1A17">
+                                        <circle cx="70" cy="70" r="2"/><circle cx="78" cy="70" r="2"/><circle cx="70" cy="78" r="2"/>
+                                        <circle cx="90" cy="70" r="2"/><circle cx="90" cy="78" r="2"/>
+                                    </g>
+                                    <text x="70" y="235" font-family="Montserrat" font-size="9" tracking="2" fill="#706C65">TACTILE ELEVATION & BRAILLE SCHEMATIC</text>
+                                </svg>
+                            </div>
+                            <div class="text-center font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">
+                                Cross-section diagram of Hasabnis Tactile Canvas Surface
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ARTIST ESSAYS & FACEBOOK MUSINGS -->
+        <section id="musings" class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 border-b border-galleryBorder">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="font-subheading text-[11px] tracking-[0.3em] uppercase text-galleryAccent block mb-2">Facebook Archives & Essays</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-light text-galleryInk">Artist's Musings</h2>
+                </div>
+                <p class="font-sans text-xs text-galleryMuted font-light max-w-xs leading-relaxed">
+                    Personal reflections, studio notes, and Marathi essays written by Chintamani Hasabnis over years of studio practice.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Blog Post 1 -->
+                <article class="bg-gallerySurface border border-galleryBorder p-8 flex flex-col justify-between hover:border-galleryAccent transition-colors duration-300 group">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center font-subheading text-[10px] text-galleryMuted tracking-widest uppercase">
+                            <span>Essay</span>
+                            <span>October 14, 2023</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors leading-snug">
+                            "Bridging the Gap: Why Art Must Be Touched"
+                        </h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">
+                            Reflections on standing inside the gallery and watching a blind student feel the curves of a tactile canvas for the first time. Sight is only one doorway to perception...
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-galleryBorder/60">
+                        <a href="javascript:void(0)" onclick="alert('Post Preview: In this essay, Chintamani discusses how touch activates deep memory structures alongside visual appreciation.')" class="font-subheading text-[10px] tracking-widest uppercase text-galleryInk group-hover:text-galleryAccent font-medium flex items-center gap-2">
+                            <span>Read Essay</span>
+                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="bg-gallerySurface border border-galleryBorder p-8 flex flex-col justify-between hover:border-galleryAccent transition-colors duration-300 group">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center font-subheading text-[10px] text-galleryMuted tracking-widest uppercase">
+                            <span>Marathi Musings</span>
+                            <span>May 28, 2023</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors leading-snug">
+                            माझे कलाप्रवास आणि अभिनव कला महाविद्यालयातील आठवणी
+                        </h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">
+                            अभिनव कला महाविद्यालयात शिकताना रेखाटनाचा घेतलेला ध्यास आणि नंतरच्या आयुष्यात बदललेले कलेचे स्वरूप याबद्दलची काही मनमोकळी निरीक्षणे...
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-galleryBorder/60">
+                        <a href="javascript:void(0)" onclick="alert('Marathi Essay Preview: Chintamani recalls foundational portrait drawing exercises at Abhinav Kala Mahavidyalaya.')" class="font-subheading text-[10px] tracking-widest uppercase text-galleryInk group-hover:text-galleryAccent font-medium flex items-center gap-2">
+                            <span>Read Essay</span>
+                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="bg-gallerySurface border border-galleryBorder p-8 flex flex-col justify-between hover:border-galleryAccent transition-colors duration-300 group">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center font-subheading text-[10px] text-galleryMuted tracking-widest uppercase">
+                            <span>Studio Notes</span>
+                            <span>January 05, 2024</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-normal group-hover:text-galleryAccent transition-colors leading-snug">
+                            "The Anatomy of Light in Realistic Portraiture"
+                        </h3>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">
+                            Notes on shadow angles in portrait work. How subtle shifts in ambient studio lighting alter emotional temperature on canvas.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-galleryBorder/60">
+                        <a href="javascript:void(0)" onclick="alert('Studio Note Preview: Technical observations on color values and flesh tone undertones under natural daylight.')" class="font-subheading text-[10px] tracking-widest uppercase text-galleryInk group-hover:text-galleryAccent font-medium flex items-center gap-2">
+                            <span>Read Essay</span>
+                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- BIOGRAPHY & RESUME TIMELINE -->
+        <section id="about" class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 border-b border-galleryBorder">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Artist Portrait / Studio Image -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-gallerySurface p-4 border border-galleryBorder">
+                        <div class="aspect-4/5 bg-galleryBg border border-galleryBorder overflow-hidden relative">
+                            <svg class="w-full h-full" viewBox="0 0 300 375">
+                                <rect width="300" height="375" fill="#F4F0E8"/>
+                                <circle cx="150" cy="140" r="60" fill="#D3C5B3"/>
+                                <path d="M80 320 C 90 220, 210 220, 220 320 Z" fill="#706C65"/>
+                            </svg>
+                        </div>
+                        <div class="mt-4 text-center font-subheading text-[10px] tracking-widest text-galleryMuted uppercase">
+                            Chintamani Hasabnis in Studio, Pune
+                        </div>
+                    </div>
+
+                    <div class="border-t border-b border-galleryBorder py-4 font-subheading text-xs space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-galleryMuted">Alma Mater:</span>
+                            <span class="text-galleryInk font-medium">Abhinav Kala Mahavidyalaya</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-galleryMuted">Focus:</span>
+                            <span class="text-galleryInk font-medium">Portraits, Tactile Canvas Relief</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-galleryMuted">Key Honor:</span>
+                            <span class="text-galleryInk font-medium">Ravi Paranjape Puraskar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biography Text & Timeline -->
+                <div class="lg:col-span-7 space-y-10">
+                    <div>
+                        <span class="font-subheading text-[11px] tracking-[0.3em] uppercase text-galleryAccent block mb-2">Biography & Vision</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-light text-galleryInk mb-6">Artist Statement</h2>
+                        
+                        <div class="font-sans text-galleryMuted text-base leading-relaxed space-y-4 font-light">
+                            <p>
+                                "My artistic foundation was built on rigorous realism and observation—capturing subtle light variations on human faces and exploring oil and canvas textures."
+                            </p>
+                            <p>
+                                "As my studio practice evolved, I recognized a profound void in art galleries: millions of visually impaired people were excluded from visual storytelling. My tactile series is designed to eliminate this barrier—offering canvases that speak to sight and touch in equal measure."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Exhibitions & Awards Timeline -->
+                    <div class="space-y-6">
+                        <h3 class="font-serif text-2xl font-normal text-galleryInk">Milestones & Exhibitions</h3>
+                        
+                        <div class="space-y-4 font-sans text-xs">
+                            <div class="bg-gallerySurface p-5 border-l-2 border-galleryAccent border-y border-r border-galleryBorder flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-subheading font-medium text-sm text-galleryInk">Ravi Paranjape Puraskar</h4>
+                                    <p class="text-galleryMuted font-light mt-1">Conferred for distinguished lifetime excellence in visual art and realistic painting techniques.</p>
+                                </div>
+                                <span class="font-subheading text-[10px] tracking-widest text-galleryAccent uppercase">Honor</span>
+                            </div>
+
+                            <div class="bg-gallerySurface p-5 border-l-2 border-galleryAccent border-y border-r border-galleryBorder flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-subheading font-medium text-sm text-galleryInk">Tactile Art Solo Exhibition</h4>
+                                    <p class="text-galleryMuted font-light mt-1">Special touch-guided gallery exhibition organized specifically for visually impaired visitors and art patrons.</p>
+                                </div>
+                                <span class="font-subheading text-[10px] tracking-widest text-galleryAccent uppercase">Exhibition</span>
+                            </div>
+
+                            <div class="bg-gallerySurface p-5 border-l-2 border-galleryAccent border-y border-r border-galleryBorder flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-subheading font-medium text-sm text-galleryInk">Inclusive Art Workshops</h4>
+                                    <p class="text-galleryMuted font-light mt-1">Conducting tactile medium workshops across Maharashtra for fine art educators and students.</p>
+                                </div>
+                                <span class="font-subheading text-[10px] tracking-widest text-galleryAccent uppercase">Education</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button onclick="alert('Downloading Artist Curriculum Vitae (PDF)...')" class="border border-galleryInk bg-galleryInk text-galleryBg hover:bg-galleryAccent hover:border-galleryAccent transition-colors duration-300 font-subheading text-xs tracking-widest uppercase px-6 py-3.5 flex items-center gap-3">
+                            <i class="fa-solid fa-file-arrow-down text-sm"></i>
+                            <span>Download Full Artist CV (PDF)</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT & INQUIRY FORM -->
+        <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+            <div class="bg-gallerySurface border border-galleryBorder p-8 sm:p-14">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="font-subheading text-[11px] tracking-[0.3em] uppercase text-galleryAccent block">Studio Contact</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-light text-galleryInk">Acquisitions & Inquiries</h2>
+                        <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed">
+                            For artwork acquisitions, custom portrait commissions, tactile exhibition collaborations, or studio visits in Pune, please leave a message.
+                        </p>
+
+                        <div class="space-y-3 font-subheading text-xs text-galleryMuted pt-4 border-t border-galleryBorder">
+                            <div><strong class="text-galleryInk font-medium">Studio Location:</strong> Pune, Maharashtra, India</div>
+                            <div><strong class="text-galleryInk font-medium">Facebook:</strong> facebook.com/chintamani.hasabnis</div>
+                            <div><strong class="text-galleryInk font-medium">Email:</strong> contact@chintamanihasabnis.com</div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-5 font-sans text-xs">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block font-subheading text-[10px] tracking-widest uppercase text-galleryMuted mb-2">Your Name *</label>
+                                    <input type="text" required placeholder="Full Name" class="w-full bg-galleryBg border border-galleryBorder p-3 text-galleryInk focus:outline-none focus:border-galleryInk transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block font-subheading text-[10px] tracking-widest uppercase text-galleryMuted mb-2">Email Address *</label>
+                                    <input type="email" required placeholder="email@domain.com" class="w-full bg-galleryBg border border-galleryBorder p-3 text-galleryInk focus:outline-none focus:border-galleryInk transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block font-subheading text-[10px] tracking-widest uppercase text-galleryMuted mb-2">Inquiry Type</label>
+                                <select class="w-full bg-galleryBg border border-galleryBorder p-3 text-galleryInk focus:outline-none focus:border-galleryInk transition-colors">
+                                    <option>Artwork Acquisition (Tactile Series / Painting)</option>
+                                    <option>Custom Portrait Commission</option>
+                                    <option>Gallery Exhibition Proposal</option>
+                                    <option>Press & Media</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block font-subheading text-[10px] tracking-widest uppercase text-galleryMuted mb-2">Message *</label>
+                                <textarea rows="4" required placeholder="Describe your request..." class="w-full bg-galleryBg border border-galleryBorder p-3 text-galleryInk focus:outline-none focus:border-galleryInk transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-galleryInk text-galleryBg hover:bg-galleryAccent font-subheading text-xs tracking-[0.2em] uppercase py-4 transition-colors duration-300">
+                                Send Inquiry to Studio
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gallerySurface border-t border-galleryBorder py-12 font-subheading text-xs text-galleryMuted">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <span class="font-serif text-xl text-galleryInk block font-normal">Chintamani Hasabnis</span>
+                <span class="text-[11px] font-light">© 2026 Chintamani Hasabnis. All rights reserved. Fine Art & Tactile Works.</span>
+            </div>
+
+            <div class="flex items-center gap-8 text-[11px] tracking-widest uppercase">
+                <a href="#gallery" class="hover:text-galleryInk transition-colors">Works</a>
+                <a href="#tactile" class="hover:text-galleryInk transition-colors">Tactile</a>
+                <a href="#about" class="hover:text-galleryInk transition-colors">Bio</a>
+                <a href="#contact" class="hover:text-galleryInk transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-galleryBg border border-galleryBorder max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-xl relative animate-fade-in">
+            
+            <button onclick="closeLightbox()" class="absolute top-6 right-6 text-galleryMuted hover:text-galleryInk text-xl font-light focus:outline-none" aria-label="Close Lightbox">
+                ✕
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                <div class="aspect-square bg-gallerySurface border border-galleryBorder p-4 flex items-center justify-center">
+                    <svg class="w-full h-full" viewBox="0 0 300 300" id="lightboxSvg">
+                        <rect width="300" height="300" fill="#F4F0E8"/>
+                        <circle cx="150" cy="150" r="80" fill="#9E7B56" opacity="0.8"/>
+                    </svg>
+                </div>
+
+                <div class="space-y-4">
+                    <span id="modalCategory" class="font-subheading text-[10px] tracking-widest uppercase text-galleryAccent border-b border-galleryAccent pb-1 inline-block">
+                        TACTILE SERIES
+                    </span>
+                    
+                    <h3 class="font-serif text-3xl font-normal text-galleryInk" id="modalTitle">Artwork Title</h3>
+                    
+                    <div class="font-sans text-xs text-galleryMuted space-y-1 font-light border-b border-galleryBorder pb-4">
+                        <div><strong class="font-medium text-galleryInk">Medium:</strong> <span id="modalMedium">Embossed Acrylic & Braille</span></div>
+                        <div><strong class="font-medium text-galleryInk">Dimensions:</strong> <span id="modalDimensions">30 x 40 inches</span></div>
+                        <div><strong class="font-medium text-galleryInk">Year:</strong> <span id="modalYear">2023</span></div>
+                    </div>
+
+                    <p class="font-sans text-xs text-galleryMuted font-light leading-relaxed" id="modalDescription">
+                        Artwork narrative description...
+                    </p>
+
+                    <div class="bg-gallerySurface p-4 border border-galleryBorder font-sans text-xs space-y-1">
+                        <span class="font-subheading text-[10px] tracking-widest uppercase text-galleryAccent block font-medium">Tactile & Accessibility Notes</span>
+                        <p id="modalTactileNote" class="text-galleryMuted font-light">Features tactile texture contours for touch appreciation.</p>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="#contact" onclick="closeLightbox()" class="inline-block border border-galleryInk bg-galleryInk text-galleryBg hover:bg-galleryAccent hover:border-galleryAccent transition-colors duration-300 font-subheading text-[10px] tracking-widest uppercase px-5 py-3">
+                            Inquire About This Piece
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Filter Gallery Categories
+        function filterGallery(category, btnElement) {
+            const cards = document.querySelectorAll('.gallery-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('text-galleryInk', 'font-semibold', 'border-b-2', 'border-galleryInk');
+                btn.classList.add('text-galleryMuted');
+            });
+            
+            btnElement.classList.remove('text-galleryMuted');
+            btnElement.classList.add('text-galleryInk', 'font-semibold', 'border-b-2', 'border-galleryInk');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox Modal Content
+        const artworkData = {
+            'hero-art': {
+                title: 'Raga in Tactile Relief',
+                category: 'Tactile Series',
+                medium: 'Embossed Acrylic, Braille & Mixed Relief',
+                dimensions: '30 x 40 inches',
+                year: '2022',
+                description: 'A benchmark piece exploring Indian classical music ragas rendered visually and tactilely. High-relief geometric swells reflect pitch fluctuations.',
+                tactileNote: 'Includes high-contrast tactile ridges and braille notation along the right margin.'
+            },
+            'art-1': {
+                title: 'The Whispering Relief',
+                category: 'Tactile Series',
+                medium: 'Textured Relief & Braille on Board',
+                dimensions: '24 x 36 inches',
+                year: '2023',
+                description: 'Inspired by traditional Maharashtrian motifs, rendered with varying granular textures so the visual story can be traced with fingertips.',
+                tactileNote: 'Surfaces range from smooth polished lacquer to coarse sand textures.'
+            },
+            'art-2': {
+                title: 'Scholar in Thought',
+                category: 'Fine Portrait',
+                medium: 'Oil on Canvas',
+                dimensions: '36 x 48 inches',
+                year: '2021',
+                description: 'A realistic portraiture study demonstrating classical techniques learned at Abhinav Kala Mahavidyalaya.',
+                tactileNote: 'Fine art portraiture with emphasis on ambient daylight.'
+            },
+            'art-3': {
+                title: 'Geometry of Touch #04',
+                category: 'Tactile Series',
+                medium: 'Embossed Acrylic & Wood',
+                dimensions: '20 x 20 inches',
+                year: '2024',
+                description: 'Minimal geometric structures created with distinct tactile elevation, allowing touch-guided geometric exploration.',
+                tactileNote: 'High tactile contrast suited for sensory gallery exhibitions.'
+            },
+            'art-4': {
+                title: 'Form & Motion Study',
+                category: 'Studio Archive',
+                medium: 'Charcoal & Pastel on Paper',
+                dimensions: '18 x 24 inches',
+                year: '2023',
+                description: 'Expressive studio sketch capturing posture dynamics and weight distribution.',
+                tactileNote: 'Preparatory study on paper.'
+            },
+            'art-5': {
+                title: 'The Old Musician',
+                category: 'Fine Portrait',
+                medium: 'Oil on Canvas',
+                dimensions: '30 x 40 inches',
+                year: '2019',
+                description: 'Award-nominated portrait celebrating aged grace, rich textures of Indian instrumentation, and musical tradition.',
+                tactileNote: 'Fine art portraiture.'
+            },
+            'art-6': {
+                title: 'Nature in Braille',
+                category: 'Tactile Series',
+                medium: 'Multi-layered Canvas Relief',
+                dimensions: '28 x 36 inches',
+                year: '2020',
+                description: 'Floral motifs rendered in raised relief accompanied by descriptive Marathi and English Braille captions.',
+                tactileNote: 'Fully accessible for blind gallery visitors.'
+            }
+        };
+
+        function openLightbox(id) {
+            const data = artworkData[id] || artworkData['hero-art'];
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalCategory').innerText = data.category;
+            document.getElementById('modalMedium').innerText = data.medium;
+            document.getElementById('modalDimensions').innerText = data.dimensions;
+            document.getElementById('modalYear').innerText = data.year;
+            document.getElementById('modalDescription').innerText = data.description;
+            document.getElementById('modalTactileNote').innerText = data.tactileNote;
+
+            const modal = document.getElementById('lightbox');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Toggle Audio Description Demo
+        let audioPlaying = false;
+        function playAudioGuideDemo() {
+            const icon = document.getElementById('audioIcon');
+            const text = document.getElementById('audioText');
+            const notice = document.getElementById('audioNotice');
+
+            if (!audioPlaying) {
+                audioPlaying = true;
+                icon.className = "fa-solid fa-volume-high text-sm text-galleryAccent";
+                text.innerText = "Audio Description Active (Pause)";
+                notice.classList.remove('hidden');
+            } else {
+                audioPlaying = false;
+                icon.className = "fa-solid fa-volume-low text-sm";
+                text.innerText = "Listen to Audio Description Demo";
+                notice.classList.add('hidden');
+            }
+        }
+
+        // Form Submit Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you. Your message has been sent to the studio of Chintamani Hasabnis.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
+```
